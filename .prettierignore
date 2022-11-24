@@ -1,0 +1,4 @@
+# Ignore artifacts:
+.husky
+.next
+node_modules
