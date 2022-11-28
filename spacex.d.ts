@@ -263,6 +263,7 @@ declare namespace SPACEX {
       customers: string[]
       norad_id: number[]
       nationalities: string[]
+      manufacturers: string[]
       mass_kg: number
       mass_lbs: number
       orbit: string
@@ -430,8 +431,23 @@ declare namespace SPACEX {
       launches: string[]
       id: string
     }
-
+    interface GlobePoint {
+      lat: SPACEX.ArKs.Starlink.latitude;
+      lng: SPACEX.ArKs.Starlink.longitude;
+      alt: number;
+      radius: number;
+      color: string;
+      label: SPACEX.ArKs.Starlink.spaceTrack.TLE_LINE0;
+      version: SPACEX.ArKs.Starlink.version;
+      velocity_kms: SPACEX.ArKs.Starlink.velocity_kms;
+      height_km: SPACEX.ArKs.Starlink.height_km;
+      launch: Launch;
+      name: SPACEX.ArKs.Starlink.spaceTrack.OBJECT_NAME;
+      date: SPACEX.ArKs.Starlink.spaceTrack.LAUNCH_DATE;
+      spaceTrack: SPACEX.ArKs.Starlink.spaceTrack;
+    }
     interface Starlink {
+      
       spaceTrack: {
         CCSDS_OMM_VERS: string
         COMMENT: string
@@ -489,3 +505,4 @@ declare namespace SPACEX {
 export as namespace SPACEX
 
 declare module "@heroicons/*"
+

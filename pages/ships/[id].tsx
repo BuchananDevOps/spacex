@@ -2,12 +2,16 @@ import { NextPage } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { Suspense } from "react"
 
 import useSWR from "swr"
 
 import { Ships } from "@/lib/types"
 
-const NewShip = dynamic(() => import("@/components/Items/NewShip"))
+const NewShip = dynamic(() => import("@/components/Items/NewShip"), {
+  ssr: true,
+  suspense: true,
+})
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
@@ -26,7 +30,9 @@ const Page: NextPage = () => {
       <Head>
         <title>SpaceX - {data.name} </title>
       </Head>
-      <NewShip {...data} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <NewShip {...data} />
+      </Suspense>
     </>
   )
 }

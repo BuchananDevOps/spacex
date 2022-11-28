@@ -8,7 +8,10 @@ import useSWR from "swr"
 
 import { Launches } from "@/lib/types"
 
-const Launch = dynamic(() => import("@/components/Items/Launch"))
+const Launch = dynamic(() => import("@/components/Items/Launch"), {
+  ssr: true,
+  suspense: true,
+})
 
 const Page: NextPage = () => {
   const router = useRouter()

@@ -26,7 +26,7 @@ const Page: NextPage<{ landpads: any }> = ({ landpads }) => {
           {landpads.map((landpad: any) => (
             <div
               key={landpad.id}
-              className="col-span-12 md:col-span-12 lg:col-span-6"
+              className="col-span-12 md:col-span-12 lg:col-span-12"
             >
               <CardLandpad {...landpad} />
             </div>

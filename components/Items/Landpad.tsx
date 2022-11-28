@@ -120,6 +120,7 @@ const Landpad: FC<SPACEX.ArKs.Landpads> = ({
               height={1000}
               src={`${large}`}
               width={1000}
+              quality={100}
             />
           </div>
         </div>

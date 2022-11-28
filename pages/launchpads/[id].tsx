@@ -8,7 +8,10 @@ import useSWR from "swr"
 
 import { Launchpad } from "@/lib/types"
 
-const LaunchPad = dynamic(() => import("@/components/Items/LaunchPad"))
+const LaunchPad = dynamic(() => import("@/components/Items/LaunchPad"), {
+  ssr: true,
+  suspense: true,
+})
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 

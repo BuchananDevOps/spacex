@@ -5,7 +5,10 @@ import { Suspense } from "react"
 
 const allLaunches = "https://api.spacexdata.com/v4/launches"
 
-const CardLaunch = dynamic(() => import("@/components/Card/CardLaunch"))
+const CardLaunch = dynamic(() => import("@/components/Card/CardLaunch"), {
+  ssr: true,
+  suspense: true,
+})
 
 export async function getServerSideProps() {
   const res = await fetch(`${allLaunches}`)
@@ -27,14 +30,16 @@ const Page: NextPage<{ launches: any }> = ({ launches }) => {
       <Suspense fallback={<div>Loading...</div>}>
         <div className="container mx-auto">
           <div className="grid grid-cols-12 gap-4">
-            {launches.map((launch: any) => (
-              <div
-                key={launch.id}
-                className="col-span-12 md:col-span-12 lg:col-span-6"
-              >
-                <CardLaunch {...launch} />
-              </div>
-            ))}
+            <Suspense fallback={<div>Loading...</div>}>
+              {launches.map((launch: any) => (
+                <div
+                  key={launch.id}
+                  className="col-span-12 md:col-span-12 lg:col-span-6"
+                >
+                  <CardLaunch {...launch} />
+                </div>
+              ))}
+            </Suspense>
           </div>
         </div>
       </Suspense>

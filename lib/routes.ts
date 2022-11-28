@@ -19,7 +19,7 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "launches",
           name: "Launches",
-          slug: "launches",
+          slug: "/launches",
           description: "SpaceX launches",
         },
         {
@@ -55,13 +55,13 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "launchpads",
           name: "Launchpads",
-          slug: "launchpads",
+          slug: "/launchpads",
           description: "SpaceX launchpads",
         },
         {
           id: "landpads",
           name: "Landpads",
-          slug: "landpads",
+          slug: "/landpads",
           description: "SpaceX Landpads",
         },
       ],
@@ -73,13 +73,13 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "rockets",
           name: "Rockets",
-          slug: "rockets",
+          slug: "/rockets",
           description: "SpaceX rockets",
         },
         {
           id: "capsules",
           name: "Capsules",
-          slug: "capsules",
+          slug: "/capsules",
           description: "SpaceX capsules",
         },
         {
@@ -91,7 +91,7 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "payloads",
           name: "Payloads",
-          slug: "payloads",
+          slug: "/payloads",
           description: "SpaceX payloads",
         },
       ],
@@ -103,7 +103,7 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "dragons",
           name: "Dragons",
-          slug: "dragons",
+          slug: "/dragons",
           description: "SpaceX dragons",
         },
       ],
@@ -115,13 +115,13 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "ships",
           name: "Ships",
-          slug: "ships",
+          slug: "/ships",
           description: "SpaceX ships",
         },
         {
           id: "active",
           name: "Active",
-          slug: "ships/active",
+          slug: "/ships/active",
           description: "SpaceX active ships",
         },
       ],
@@ -133,13 +133,13 @@ export const routes: { name: string; route: string; categories: Category[] }[] =
         {
           id: "company",
           name: "Company",
-          slug: "company",
+          slug: "/company",
           description: "SpaceX company",
         },
         {
           id: "roadster",
           name: "Roadster",
-          slug: "roadster",
+          slug: "/roadster",
           description: "SpaceX Roadster",
         },
       ],

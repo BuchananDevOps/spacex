@@ -1,10 +1,14 @@
 import { NextPage } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
+import { Suspense } from "react"
 
 const past = "https://api.spacexdata.com/v4/launches/past"
 
-const CardLaunch = dynamic(() => import("@/components/Card/CardLaunch"))
+const CardLaunch = dynamic(() => import("@/components/Card/CardLaunch"), {
+  ssr: true,
+  suspense: true,
+})
 
 export async function getServerSideProps() {
   const res = await fetch(`${past}`)
@@ -25,14 +29,16 @@ const Page: NextPage<{ launches: any }> = ({ launches }) => {
       </Head>
       <div className="container mx-auto">
         <div className="grid grid-cols-12 gap-4">
-          {launches.map((launch: any) => (
-            <div
-              key={launch.id}
-              className="col-span-12 md:col-span-12 lg:col-span-6"
-            >
-              <CardLaunch {...launch} />
-            </div>
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {launches.map((launch: any) => (
+              <div
+                key={launch.id}
+                className="col-span-12 md:col-span-12 lg:col-span-6"
+              >
+                <CardLaunch {...launch} />
+              </div>
+            ))}
+          </Suspense>
         </div>
       </div>
     </>

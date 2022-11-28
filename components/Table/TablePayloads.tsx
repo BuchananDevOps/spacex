@@ -13,7 +13,7 @@ interface Props {
 
 const TablePayloads: FC<Props> = ({ children }) => {
   return (
-    <div className="table-payloads">
+    <div className="table-payloads  overflow-x-scroll">
       <Table>
         <TableHead>
           <TableRow>

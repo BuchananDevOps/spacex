@@ -1,8 +1,12 @@
 import { NextPage } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
+import { Suspense } from "react"
 
-const CardShip = dynamic(() => import("@/components/Card/CardShip"))
+const CardShip = dynamic(() => import("@/components/Card/CardShip"), {
+  ssr: true,
+  suspense: true,
+})
 
 export async function getServerSideProps() {
   const res = await fetch(`https://api.spacexdata.com/v4/ships`)
@@ -23,14 +27,16 @@ const Page: NextPage<{ ships: any }> = ({ ships }) => {
       </Head>
       <div className="container mx-auto">
         <div className="grid grid-cols-12 gap-4">
-          {ships.map((ship: any) => (
-            <div
-              key={ship.id}
-              className="col-span-12 md:col-span-12 lg:col-span-6"
-            >
-              <CardShip {...ship} />
-            </div>
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {ships.map((ship: any) => (
+              <div
+                key={ship.id}
+                className="col-span-12 md:col-span-12 lg:col-span-12"
+              >
+                <CardShip {...ship} />
+              </div>
+            ))}
+          </Suspense>
         </div>
       </div>
     </>

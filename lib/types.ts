@@ -14,6 +14,37 @@ export type SpaceX = {
   starlink: Starlink
 }
 
+export type GlobePoint = {
+  lat: number;
+  lng: number;
+  alt: number;
+  radius: number;
+  color: string;
+  label: string;
+  version: string;
+  velocity_kms: number;
+  height_km: number;
+  name: string;
+  date_utc: string;
+  launch: Launches;
+}
+
+export type Satellite = {
+      lat: Starlink['latitude'];
+      lng: Starlink['longitude'];
+      alt: number;
+      radius: number;
+      color: string;
+      label: Starlink["spaceTrack"]["TLE_LINE0"];
+      version: Starlink["version"];
+      velocity_kms: Starlink["velocity_kms"];
+      height_km: Starlink["height_km"];
+      launch: Launches;
+      name: Starlink["spaceTrack"]["OBJECT_NAME"];
+      date: Starlink["spaceTrack"]["LAUNCH_DATE"];
+      spaceTrack: Starlink["spaceTrack"];
+}
+
 export type Company = {
   ceo: string
   coo: string

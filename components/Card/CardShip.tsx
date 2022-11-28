@@ -52,12 +52,6 @@ const CardShip: FC<SPACEX.ArKs.Ships> = ({
               </p>
             </div>
             <div className="flex w-1/3 flex-col items-center justify-center py-4">
-              <p className="text-sm leading-6 text-slate-400">Class</p>
-              <p className="text-2xl font-semibold leading-7 text-white">
-                {shipClass}
-              </p>
-            </div>
-            <div className="flex w-1/3 flex-col items-center justify-center py-4">
               <p className="text-sm leading-6 text-slate-400">Year Built</p>
               <p className="text-2xl font-semibold leading-7 text-white">
                 {year_built}

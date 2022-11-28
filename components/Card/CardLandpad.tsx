@@ -25,7 +25,7 @@ const CardLandpad: FC<SPACEX.ArKs.Landpads> = ({
   function countDetails(details: string) {
     const str = details || ""
     if (str.length > 380) {
-      return str.substring(0, 645) + "...Reac more"
+      return str.substring(0, 645) + "...Read more"
     }
     return str
   }

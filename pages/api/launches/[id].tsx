@@ -8,7 +8,7 @@ type ResponseError = {
   message: string
 }
 
-export default function landpadHandler() {
+export default function launchesHandler() {
   return async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Launches[] | ResponseError>

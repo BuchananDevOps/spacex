@@ -18,9 +18,6 @@ export const CategoryNav = () => {
           href="/"
           onClick={close}
         >
-          <div className="h-7 w-7 rounded-full border border-white/30 group-hover:border-white/50">
-            Logo
-          </div>
           <h2 className="font-medium tracking-wide text-gray-300 group-hover:text-gray-50">
             SpaceX Directory <span className="Work in progress">(WIP)</span>
           </h2>
@@ -83,7 +80,7 @@ const GlobalNavItem = ({
       className={clsx(
         "block rounded-md px-3 py-2 text-sm font-medium  hover:text-gray-300"
       )}
-      href={`/${category.slug}`}
+      href={`${category.slug}`}
       onClick={close}
     >
       {category.name}

@@ -20,6 +20,8 @@ const nextConfig = {
       "photos.marinetraffic.com",
       "images2.imgbox.com",
       "farm5.staticflickr.com",
+      "farm1.staticflickr.com",
+      "live.staticflickr.com"
     ],
     remotePatterns: [
       {

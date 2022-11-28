@@ -6,12 +6,19 @@ import { FC } from "react"
 import packageData from "package.json"
 
 import "@/styles/globals.css"
+import { SWRConfig } from "swr"
 
 const RootLayout = dynamic(() => import("@/components/Page/RootLayout"))
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <RootLayout>
+    <>
+    <SWRConfig 
+      value={{
+        refreshInterval: 3000,
+        fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
+      }}
+    >
       <Head>
         <title>{packageData.displayName}</title>
         <meta
@@ -19,9 +26,12 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           name="viewport"
         />
       </Head>
-      <Component {...pageProps} />
-    </RootLayout>
+      <RootLayout>
+        <Component {...pageProps} />
+      </RootLayout>
+      </SWRConfig>
+    </>
   )
 }
 
-export default dynamic(() => Promise.resolve(App))
+export default App

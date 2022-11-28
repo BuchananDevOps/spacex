@@ -1,22 +1,27 @@
 import { NextPage } from "next"
 import dynamic from "next/dynamic"
 import Head from "next/head"
+import Link from "next/link"
+import { Suspense } from "react"
 
-const Card = dynamic(() => import("@/interface/Card"))
-const CardContent = dynamic(() => import("@/interface/Card/card-content"))
+const Card = dynamic(() => import("@/interface/Card"), {
+  ssr: true,
+  suspense: true,
+})
+
 
 export async function getServerSideProps() {
   const res = await fetch(`https://api.spacexdata.com/v4/rockets`)
-  const rockets = await res.json()
+  const data = await res.json()
 
   return {
     props: {
-      rockets,
+      data,
     },
   }
 }
 
-const Page: NextPage<{ rockets: any }> = ({ rockets }) => {
+const Page: NextPage<{ data: any }> = ({ data }) => {
   return (
     <>
       <Head>
@@ -24,19 +29,16 @@ const Page: NextPage<{ rockets: any }> = ({ rockets }) => {
       </Head>
       <div className="container mx-auto">
         <div className="grid grid-cols-12 gap-4">
-          {rockets.map((rocket: any) => (
-            <div
-              key={rocket.id}
-              className="col-span-12 md:col-span-12 lg:col-span-6"
-            >
-              <Card {...rocket}>
-                <CardContent>
-                  <h1 className="text-2xl font-bold">{rocket.name}</h1>
-                  <p className="text-gray-500">{rocket.description}</p>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {data.map((data: any) => (
+              <div
+                key={data.id}
+                className="col-span-12 md:col-span-12 lg:col-span-12"
+              >
+                <Card category="rockets" image={data.image} {...data} />
+              </div>
+            ))}
+          </Suspense>
         </div>
       </div>
     </>
